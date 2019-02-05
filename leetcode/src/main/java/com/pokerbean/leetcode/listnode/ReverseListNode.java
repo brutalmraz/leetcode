@@ -10,8 +10,30 @@ package com.pokerbean.leetcode.listnode;
  */
 public class ReverseListNode {
 
-    public ListNode reverseListNode(ListNode listNode){
-        
-        return null;
+    public ListNode reverseListNode(ListNode origin){
+        if (origin == null || origin.next == null) {
+            return origin;
+        }
+        ListNode nextNode = origin.next;
+        origin.next = null;
+        ListNode reverseListNode = reverseListNode(nextNode);
+        nextNode.next = origin;
+        return reverseListNode;
+    }
+
+    public ListNode reverseListNodeDie(ListNode origin){
+        if (origin == null) {
+            return origin;
+        }
+        ListNode preNode = null;
+        ListNode nextNode = null;
+        ListNode nowNode = origin;
+        while (nowNode!=null){
+            nextNode = nowNode.next;
+            nowNode.next = preNode;
+            preNode = nowNode;
+            nowNode = nextNode;
+        }
+        return preNode;
     }
 }
