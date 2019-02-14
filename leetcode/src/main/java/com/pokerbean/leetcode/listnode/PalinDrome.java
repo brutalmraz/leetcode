@@ -40,13 +40,21 @@ public class PalinDrome {
             slow = slow.next;
         }
         ListNode current = slow;
-        while (slow!=null && slow.next != null){
+        boolean isTwo =true;
+        while (current!=null){
             // 当前节点和 栈顶比较
             if (current.val != stack.pop().val) {
                 return  false;
             }
+            isTwo =false;
             current = current.next ;
         }
+        if (isTwo) {
+            if (current.val != stack.pop().val) {
+                return  false;
+            }
+        }
+
         return true;
     }
 
@@ -120,11 +128,13 @@ public class PalinDrome {
 
     public static void main(String[] args) {
         ListNode l1 = new ListNode(1);
-        ListNode l2 = new ListNode(2);
+        ListNode l2 = new ListNode(1);
 //        ListNode l3 = new ListNode(1);
+//        ListNode l4 = new ListNode(1);
         l1.next = l2;
 //        l2.next = l3;
-        boolean palindrome = isPalindrome(l1);
+//        l3.next = l4;
+        boolean palindrome = isPalindromeByStack(l1);
         System.out.println(palindrome);
     }
 
